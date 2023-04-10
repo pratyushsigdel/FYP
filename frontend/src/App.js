@@ -24,7 +24,17 @@ import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
-import axios from "axios";
+// import axios from "axios";
+// import Payment from "./component/Cart/Payment.js";
+import OrderSuccess from "./component/Cart/OrderSuccess.js";
+import MyOrders from "./component/Order/MyOrders.js";
+import OrderDetails from "./component/Order/OrderDetails.js";
+import Dashboard from "./component/admin/Dashboard.js";
+import ProductList from "./component";
+import NewProduct from "./component/admin/NewProduct";
+import UpdateProduct from "./component/admin/UpdateProduct.js";
+import OrderList from "./component/admin/OrderList";
+import ProcessOrder from "./component/admin/ProcessOrder";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -97,6 +107,106 @@ function App() {
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               {" "}
               <ConfirmOrder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/success"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              {" "}
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/orders"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              {" "}
+              <MyOrders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/order/:id"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              {" "}
+              <OrderDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/products"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <ProductList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/product"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <NewProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/product/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <UpdateProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/orders"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <OrderList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/order/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <OrderList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/order/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <ProcessOrder />
             </ProtectedRoute>
           }
         />
