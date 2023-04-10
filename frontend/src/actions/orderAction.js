@@ -132,6 +132,8 @@ export const getOrderDetails = (id) => async (dispatch) => {
   }
 };
 
+export const payOrder = (id, paymentResult) => async (dispatch, getState) => {};
+
 //Clearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });

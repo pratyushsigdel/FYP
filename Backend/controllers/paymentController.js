@@ -1,6 +1,6 @@
-// const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-// const khalti = require("khalti")(process.env.KHALTI_SECRET_KEY);
+const khalti = require("khalti")(process.env.KHALTI_SECRET_KEY);
 
 // exports.processPayment = catchAsyncErrors(async (req, res, next) => {
 //   const myPayment = await khalti.paymentIntents.create({
