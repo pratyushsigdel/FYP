@@ -21,7 +21,7 @@ const categories = [
   "Rally_Bike",
 ];
 
-const Products = ({ match }) => {
+const Products = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
