@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import Settings from "@material-ui/icons/Settings";
 
 const UserOptions = ({ user }) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -33,6 +34,8 @@ const UserOptions = ({ user }) => {
       name: `Cart(${cartItems.length})`,
       func: cart,
     },
+    { icon: <Settings />, name: "Servicing", func: service },
+
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -58,6 +61,10 @@ const UserOptions = ({ user }) => {
 
   function cart() {
     navigate("/cart");
+  }
+
+  function service() {
+    navigate("/service");
   }
 
   function logoutUser() {

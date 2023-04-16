@@ -20,15 +20,14 @@ const user = require("./routes/userRoute");
 const order = require("./routes/orderRoute");
 // const payment = require("./routes/paymentRoute");
 const hirerequest = require("./routes/hireRequestRoute");
-//const payment = require("./routes/orderRoute")
+const serviceRoute = require("./routes/serviceRoute");
 
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
 // app.use("/api/v1", payment);
 app.use("/api/v1", hirerequest);
-
-//app.use("/api/v1", payment);
+app.use("/api/v1", serviceRoute);
 
 // Middleware for Errors
 app.use(errorMiddleware);

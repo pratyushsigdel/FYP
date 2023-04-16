@@ -1,6 +1,6 @@
 .banner{
 
-    background-image:url("D:\Bikers Portal\frontend\src\images\12.jpg");
+    background-image:url("../../images/12.jpg");
     height: 100vmin;
     display:flex;
     flex-direction: column;

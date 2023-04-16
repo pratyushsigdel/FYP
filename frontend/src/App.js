@@ -41,6 +41,11 @@ import ProcessOrder from "./component/admin/ProcessOrder.js";
 import OrderForm from "./component/HiringRequest/HiringRequest";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
+import ServiceList from "./component/admin/ServiceList";
+import Service from "./component/Service";
+import { UpdateService } from "./component/admin/UpdateService";
+import HireList from "./component/admin/HireList";
+import UpdateHire from "./component/admin/UpdateHire";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -263,9 +268,51 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          exact
+          path="/admin/hires"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <HireList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/hires/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <UpdateHire />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/admin/service"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <ServiceList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/admin/service/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <UpdateService />
+            </ProtectedRoute>
+          }
+        />
         <Route exact path="/hirerequest" Component={HiringRequest} />
         <Route exact path="/Contact" Component={Contact} />
         <Route exact path="/About" Component={About} />
+        <Route exact path="/service" Component={Service} />
       </Routes>
       <Footer />
     </Router>

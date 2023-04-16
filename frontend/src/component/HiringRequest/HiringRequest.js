@@ -141,7 +141,7 @@ const HiringRequest = () => {
     myForm.set("avatar", avatar);
 
     try {
-      await dispatch(
+      dispatch(
         posthiringrequest(id, startDate, endDate, avatar, status, email)
       );
       // Reset form values after submission
@@ -149,10 +149,10 @@ const HiringRequest = () => {
       setEndDate("");
       setEmail("");
       setStatus("Pending");
-      alert.show("Form submitted successfully");
+      alert.success("Form submitted successfully");
       navigate(-2);
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response);
     }
 
     setLoading(false);

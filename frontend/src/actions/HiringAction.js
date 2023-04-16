@@ -77,7 +77,7 @@ export const getAdminHireRequests = () => async (dispatch) => {
 
     dispatch({
       type: ADMIN_HIRE_REQUEST_SUCCESS,
-      payload: data,
+      payload: data.hireRequests,
     });
   } catch (error) {
     dispatch({
