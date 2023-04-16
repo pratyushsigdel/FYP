@@ -1,13 +1,17 @@
-// const express = require("express");
-// const router = express.Router();
-// const { isAuthenticatedUser } = require("../middleware/autho");
+const express = require("express");
+const router = express.Router();
+const {
+  isAuthenticatedUser,
+  sendKhaltiApiKey,
+} = require("../middleware/autho");
 // const {
 //   processPayment,
-//   sendKhaltiApiKey,
-// } = require("../controllers/paymentController");
+sendKhaltiApiKey,
+  // } = require("../controllers/paymentController");
+  //
 
-// router
-//   .route("https://khalti.com/api/v2/payment/verify/%22)
-//   .post(isAuthenticatedUser, processPayment);
-// router.route("/khaltiapikey").get(isAuthenticatedUser, sendKhaltiApiKey);
-// module.exports = router;
+  //   .route("https://khalti.com/api/v2/payment/verify/%22)
+
+  router.route("/payment/process").post(isAuthenticatedUser, processPayment);
+router.route("/KhaltiApiKey").get(isAuthenticatedUser, sendKhaltiApiKey);
+module.exports = router;

@@ -7,6 +7,7 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import ProductCard from "./ProductCard.js";
 
 const Home = () => {
   const alert = useAlert();
@@ -46,7 +47,7 @@ const Home = () => {
 
           <div className="container" id="container">
             {products &&
-              products.map((product) => <Product product={product} />)}
+              products.map((product) => <ProductCard product={product} />)}
           </div>
         </Fragment>
       )}

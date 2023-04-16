@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
@@ -30,14 +30,28 @@ import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import Dashboard from "./component/admin/Dashboard.js";
-import ProductList from "./component";
+import ProductList from "./component/admin/ProductList";
 import NewProduct from "./component/admin/NewProduct";
 import UpdateProduct from "./component/admin/UpdateProduct.js";
 import OrderList from "./component/admin/OrderList";
-import ProcessOrder from "./component/admin/ProcessOrder";
+import UsersList from "./component/admin/UsersList";
+import UpdateUser from "./component/admin/UpdateUser";
+import ProductReviews from "./component/admin/ProductReviews";
+import ProcessOrder from "./component/admin/ProcessOrder.js";
+import OrderForm from "./component/HiringRequest/HiringRequest";
+import Contact from "./component/layout/Contact/Contact";
+import About from "./component/layout/About/About";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+
+  // const [KhaltiApiKey, setKhaltiApiKey] = React.usestate("");
+
+  // async function getKhaltiApiKey() {
+  // const { data } = await axios.get("/api/v1/khaltiApiKey");
+  // setKhaltiApiKey(data.KhaltiApiKey);
+  // }
+
   React.useEffect(() => {
     WebFont.load({
       google: {
@@ -45,6 +59,7 @@ function App() {
       },
     });
     store.dispatch(loadUser());
+    // getKhaltiApiKey();
   }, []);
 
   return (
@@ -90,6 +105,11 @@ function App() {
           }
         />
 
+        <Route exact path="/password/forgot" Component={ForgotPassword} />
+        <Route exact path="/password/reset/:token" Component={ResetPassword} />
+        <Route exact path="/login" Component={LoginSignUp} />
+        <Route exact path="/cart" Component={Cart} />
+
         <Route
           exact
           path="/shipping"
@@ -97,16 +117,6 @@ function App() {
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               {" "}
               <Shipping />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          exact
-          path="/order/confirm"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              {" "}
-              <ConfirmOrder />
             </ProtectedRoute>
           }
         />
@@ -130,6 +140,27 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          exact
+          path="/order/confirm"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              {" "}
+              <ConfirmOrder />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route
+          exact
+          path="/process/payment"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              {" "}
+              <Payment />
+            </ProtectedRoute>
+          }
+        /> */}
+
         <Route
           exact
           path="/order/:id"
@@ -196,26 +227,45 @@ function App() {
           element={
             <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
               {" "}
-              <OrderList />
+              <ProcessOrder />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/admin/users"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <UsersList />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/admin/user/:id"
+          element={
+            <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
+              {" "}
+              <UpdateUser />
             </ProtectedRoute>
           }
         />
         <Route
           exact
-          path="/admin/order/:id"
+          path="/admin/reviews"
           element={
             <ProtectedRoute isAdmin={true} isAuthenticated={isAuthenticated}>
               {" "}
-              <ProcessOrder />
+              <ProductReviews />
             </ProtectedRoute>
           }
         />
-        <Route exact path="/hiring-form" Component={HiringRequest} />
-
-        <Route exact path="/password/forgot" Component={ForgotPassword} />
-        <Route exact path="/password/reset/:token" Component={ResetPassword} />
-        <Route exact path="/login" Component={LoginSignUp} />
-        <Route exact path="/cart" Component={Cart} />
+        <Route exact path="/hirerequest" Component={HiringRequest} />
+        <Route exact path="/Contact" Component={Contact} />
+        <Route exact path="/About" Component={About} />
       </Routes>
       <Footer />
     </Router>

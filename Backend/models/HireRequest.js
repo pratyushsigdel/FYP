@@ -2,11 +2,16 @@
 // start Date
 // End Date
 // email
+//file
 // status [Pending, Processing, Approved, Rejected]
 
 const mongoose = require("mongoose");
 
 const hireSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: [true],
+  },
   productId: {
     type: mongoose.Schema.ObjectId,
     ref: "Product",
@@ -24,6 +29,15 @@ const hireSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  images: [
+    {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: { type: String, required: true },
+    },
+  ],
   status: {
     type: String,
     enum: ["Pending", "Processing", "Approved", "Rejected"],

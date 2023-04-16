@@ -13,7 +13,7 @@ import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 const ResetPassword = ({ match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const id = useParams();
+  const { token } = useParams();
   const navigate = useNavigate();
   const { error, success, loading } = useSelector(
     (state) => state.forgotPassword
@@ -30,7 +30,7 @@ const ResetPassword = ({ match }) => {
     myForm.set("password", password);
     myForm.set("confirmPassword", confirmPassword);
 
-    dispatch(resetPassword(id, myForm));
+    dispatch(resetPassword(token, myForm));
   };
 
   useEffect(() => {

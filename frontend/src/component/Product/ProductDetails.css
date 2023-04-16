@@ -1,5 +1,5 @@
 .ProductDetails {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(212, 220, 234);
   width: 100vw;
   max-width: 100%;
   padding: 6vmax;
@@ -22,7 +22,7 @@
   align-items: flex-start;
 }
 
-.Image {
+.CarouselImage {
   width: 20vmax;
 }
 
@@ -80,7 +80,7 @@
 .detailsBlock-3-1-1 > input {
   border: none;
   padding: 0.5vmax;
-  width: 1vmax;
+  width: 2vmax;
   text-align: center;
   outline: none;
   font: 400 0.8vmax "Roboto";
@@ -102,6 +102,19 @@
 
 .detailsBlock-3-1 > button:last-child:hover {
   background-color: rgb(214, 84, 61);
+}
+
+.Hire > button{
+border: none;
+cursor: pointer;
+color: white;
+transition: all 0.5s;
+background-color: green;
+font: 500 0.7vmax "Roboto";
+border-radius: 20px;
+padding: 0.5vmax 2vmax;
+margin-left: 7vmax;
+outline: none;
 }
 
 .detailsBlock-3 > p {
@@ -232,6 +245,7 @@
   .detailsBlock-3-1 {
     flex-direction: column;
   }
+  
 
   .detailsBlock-3-1-1 {
     padding: 2vmax 0;
@@ -240,6 +254,7 @@
     padding: 1.2vmax;
     width: 4vmax;
   }
+  
 
   .detailsBlock-3-1-1 > input {
     padding: 1.5vmax;

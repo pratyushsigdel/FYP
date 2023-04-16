@@ -3,22 +3,22 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const khalti = require("khalti")(process.env.KHALTI_SECRET_KEY);
 
 // exports.processPayment = catchAsyncErrors(async (req, res, next) => {
-//   const myPayment = await khalti.paymentIntents.create({
-//     amount: req.body.amount,
-//     token: req.body.token,
-//     metadata: {
-//       company: "KK Shopping",
-//     },
-//   });
+const myPayment = await khalti.paymentIntents.create({
+  amount: req.body.amount,
+  token: req.body.token,
+  metadata: {
+    company: "KK Shopping",
+  },
+});
 
 //   res
 //     .status(200)
 //     .json({ success: true, client_secret: myPayment.client_secret });
 // });
 
-// exports.sendKhaltiApiKey = catchAsyncErrors(async (req, res, next) => {
-//   res.status(200).json({ KhaltiApiKey: process.env.STRIPE_API_KEY });
-// });
+exports.sendKhaltiApiKey = catchAsyncErrors(async (req, res, next) => {
+  res.status(200).json({ KhaltiApiKey: process.env.KHALTI_API_KEY });
+});
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

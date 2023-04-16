@@ -1,0 +1,82 @@
+body {
+  background-color: #f6f8fa;
+  color: #212529;
+  font-family: Arial, sans-serif;
+}
+
+.hiring-request {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.hiring-request__heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.hiring-request__form-control {
+  margin-bottom: 20px;
+}
+
+.hiring-request__form-control label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hiring-request__form-control input,
+.hiring-request__form-control select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.hiring-request__form-control input[type="file"] {
+  display: none;
+}
+
+.hiring-request__form-control .hiring-request__avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.hiring-request__form-control img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+}
+
+.hiring-request__submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hiring-request__submit-btn:hover {
+  background-color: #0069d9;
+}
+
+@media (min-width: 768px) {
+  .hiring-request {
+    width: 50%;
+  }
+}
