@@ -1,5 +1,5 @@
 import "./App.css";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
@@ -24,8 +24,8 @@ import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
-// import axios from "axios";
-// import Payment from "./component/Cart/Payment.js";
+import axios from "axios";
+import Payment from "./component/Cart/Payment.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
@@ -46,16 +46,18 @@ import Service from "./component/Service";
 import { UpdateService } from "./component/admin/UpdateService";
 import HireList from "./component/admin/HireList";
 import UpdateHire from "./component/admin/UpdateHire";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  // const [KhaltiApiKey, setKhaltiApiKey] = React.usestate("");
-
-  // async function getKhaltiApiKey() {
-  // const { data } = await axios.get("/api/v1/khaltiApiKey");
-  // setKhaltiApiKey(data.KhaltiApiKey);
-  // }
+  const [stripeApiKey, setStripeApiKey] = useState("");
+  const stripePromise = loadStripe(stripeApiKey);
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   React.useEffect(() => {
     WebFont.load({
@@ -64,7 +66,7 @@ function App() {
       },
     });
     store.dispatch(loadUser());
-    // getKhaltiApiKey();
+    getStripeApiKey();
   }, []);
 
   return (
@@ -87,7 +89,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           exact
           path="/me/update"
@@ -98,7 +99,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           exact
           path="/password/update"
@@ -109,12 +109,10 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route exact path="/password/forgot" Component={ForgotPassword} />
         <Route exact path="/password/reset/:token" Component={ResetPassword} />
         <Route exact path="/login" Component={LoginSignUp} />
         <Route exact path="/cart" Component={Cart} />
-
         <Route
           exact
           path="/shipping"
@@ -155,17 +153,18 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route
+        <Route
           exact
           path="/process/payment"
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               {" "}
-              <Payment />
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
             </ProtectedRoute>
           }
-        /> */}
-
+        />
         <Route
           exact
           path="/order/:id"
@@ -236,7 +235,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           exact
           path="/admin/users"
@@ -247,7 +245,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           exact
           path="/admin/user/:id"
@@ -288,7 +285,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           exact
           path="/admin/service"

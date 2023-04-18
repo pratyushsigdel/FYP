@@ -15,8 +15,6 @@ const MyOrders = () => {
 
   const alert = useAlert();
 
-
-
   const { loading, error, orders } = useSelector((state) => state.myOrders);
   const { user } = useSelector((state) => state.user);
 
@@ -49,7 +47,6 @@ const MyOrders = () => {
       minWidth: 270,
       flex: 0.5,
     },
-
 
     {
       field: "actions",

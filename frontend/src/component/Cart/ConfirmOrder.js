@@ -10,20 +10,20 @@ import { useNavigate } from "react-router-dom";
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
   );
 
-  const shippingCharges = subtotal > 200000 ? 0 : 2000;
+  const shippingCharges = subtotal > 300000 ? 0 : 25000;
 
   const tax = subtotal * 0.18;
 
   const totalPrice = subtotal + tax + shippingCharges;
 
-  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.district}`;
+  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode},${shippingInfo.country}`;
 
   const proceedToPayment = () => {
     const data = {
@@ -106,8 +106,7 @@ const ConfirmOrder = () => {
               <span>Rs{totalPrice}</span>
             </div>
 
-            <button onClick={proceedToPayment} >Proceed To Payment</button>
-            
+            <button onClick={proceedToPayment}>Proceed To Payment</button>
           </div>
         </div>
       </div>

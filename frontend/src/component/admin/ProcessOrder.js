@@ -19,7 +19,7 @@ import "./processOrder.css";
 const ProcessOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
-  const id = useParams();
+  const { id } = useParams();
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
@@ -65,7 +65,8 @@ const ProcessOrder = () => {
             <div
               className="confirmOrderPage"
               style={{
-                display: order.orderStatus === "Delivered" ? "block" : "grid",
+                display:
+                  order && order.orderStatus === "Delivered" ? "block" : "grid",
               }}
             >
               <div>
@@ -141,8 +142,8 @@ const ProcessOrder = () => {
                             {item.name}
                           </Link>{" "}
                           <span>
-                            {item.quantity} X ₹{item.price} ={" "}
-                            <b>₹{item.price * item.quantity}</b>
+                            {item.quantity} X Rs{item.price} ={" "}
+                            <b>Rs{item.price * item.quantity}</b>
                           </span>
                         </div>
                       ))}

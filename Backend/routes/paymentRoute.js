@@ -1,17 +1,13 @@
 const express = require("express");
-const router = express.Router();
 const {
-  isAuthenticatedUser,
-  sendKhaltiApiKey,
-} = require("../middleware/autho");
-// const {
-//   processPayment,
-sendKhaltiApiKey,
-  // } = require("../controllers/paymentController");
-  //
+  processPayment,
+  sendStripeApiKey,
+} = require("../controllers/paymentController");
+const router = express.Router();
+const { isAuthenticatedUser } = require("../middleware/auth");
 
-  //   .route("https://khalti.com/api/v2/payment/verify/%22)
+router.route("/payment/process").post(isAuthenticatedUser, processPayment);
 
-  router.route("/payment/process").post(isAuthenticatedUser, processPayment);
-router.route("/KhaltiApiKey").get(isAuthenticatedUser, sendKhaltiApiKey);
+router.route("/stripeapikey").get(isAuthenticatedUser, sendStripeApiKey);
+
 module.exports = router;
